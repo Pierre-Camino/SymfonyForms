@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+
+	<h1 class="text-center mt-5">Liste des articles</h1>
+
+	{% for article in articles %}
+		<article class="row border text-justify mt-5">
+			<aside class="col-6">
+				<a href="{{ path('article', {id:article.id}) }}">
+					<h3 class="text-center font-weight-bold">
+						{{ article.titre }}
+					</h3>
+				</a>
+				<h5>
+					Paru le :
+					{{ article.paruLe | date('d/m/Y') }}
+					à
+					{{ article.paruLe | date('H:i') }}
+				</h5>
+				<p class="text-justify">
+					{{ article.contenu | raw }}
+				</p>
+			</aside>
+			<img class="col-6" src="{{ article.image }}" alt="image de l'article">
+		</article>
+	{% endfor %}
+
+
+{% endblock %}
